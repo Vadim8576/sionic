@@ -1,0 +1,29 @@
+
+.categoriesItem {
+	display: inline-block;
+	background: blue;
+	border-radius: 20px;
+	padding: 3px 10px;
+	color: #fff;
+	font-size: 0.8rem;
+	border: 1px blue solid;
+	margin: 0 5px 5px 0;
+}
+
+.categoriesItem:hover {
+	background: transparent;
+	color: blue;
+	cursor: pointer;
+	/*border: 1px blue solid;*/
+}
+
+.activeCategory {
+	background: red;
+	border: 1px red solid;
+}
+
+.activeCategory:hover {
+	background: transparent;
+	color: red;
+	cursor: pointer;
+}

@@ -1,0 +1,147 @@
+.basketListItem:last-child {
+	border: none;
+}
+
+
+.basketListItem {
+	width: 100%;
+	/*height: 65px;*/
+	border-bottom: 1px #8893d7 solid;
+	padding: 10px 0 10px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	flex-wrap: nowrap;
+}
+
+
+.basketListItemSection1 {
+	width: 40%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+
+.basketListItemSection2 {
+	width: 60%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+
+.basketListItemImage {
+	width: 40px;
+	min-width: 30px;
+	height: 40px;
+	min-height: 30px;
+	background: url(../../assets/apple-alt.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	margin-right: 10px;
+}
+
+.basketListItemName {
+
+	margin-right: 10px;	
+	
+}
+
+.basketListItemCount {
+	min-width: 70px;
+	margin-right: 10px;
+	
+	
+}
+
+.countCostWrapper {
+	width: 250px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+
+.CountWrapper {
+	width: 70px;
+	height: 25px;
+	border: 1px #8893d7 solid;
+	border-radius: 16px;
+	position: relative;
+}
+
+.CountMinus {
+	position: absolute;
+	width: 15px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor:pointer;
+}
+
+.Count {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.CountPlus {
+	position: absolute;
+	width: 15px;
+	height: 100%;
+	top: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor:pointer;
+}
+
+
+
+
+
+.basketListItemCost {
+	/*width: 20%;*/
+	min-width: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	margin-right: 10px;
+}
+
+.coast {
+	font-size: 1rem;
+}
+
+.percent {
+	font-size: .8rem;
+	text-decoration: line-through;
+	color: #666;
+}
+
+
+.basketListItemDelBtnWrapper {
+	/*width: 20px;*/
+	
+}
+
+.basketListItemDelBtn {
+	width: 15px;
+	height: 15px;
+	background: url(../../assets/trash-alt.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	border: none;
+	cursor:pointer;
+}

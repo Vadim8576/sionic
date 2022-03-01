@@ -1,0 +1,116 @@
+.pageHeader {
+	width: 100%;
+	/*height: 50px;*/
+	/*border-bottom: 1px #999 solid;*/
+	padding: 10px 20px;
+}
+
+
+.headerLine1 {
+	width: 100%;
+	height: 45px;
+	display: grid;
+	grid-template-columns: 100px 300px auto 60px 60px;
+	grid-template-rows: auto;
+	justify-items: center;
+	
+}
+
+
+
+.headerLine1Logo,
+.headerLine1GeoPosition,
+.headerLine1Seach,
+.headerLine1Basket,
+.headerLine1UserAvatar {
+	/*border-right: 1px #999 solid;*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+    /*padding: 0 10px;*/
+}
+
+
+.headerLine1GeoPosition img {
+	width: 20px;
+	height: 20px;
+}
+
+.headerLine1GeoPosition {
+	padding-left: 20px;
+}
+
+.headerLine1GeoPosition p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #999;
+}
+
+
+
+.headerLine1Seach input {
+	width: 80%;
+
+}
+
+.basketCount {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50%;
+	height: 50%;
+	background: #fff;
+	font-size: 0.8rem;
+	font-weight: bolder;
+	color: blue;
+}
+
+
+
+.basketBtnWrapper {
+	width: 40px;
+	height: 40px;
+	position: relative;
+}
+
+.basketIcon {
+	width: 100%;
+	height: 100%;
+	border: 1px #999 solid;
+	border-radius: 50%;
+	background: url(../../assets/shopping_basket.svg);
+	background-repeat: no-repeat;
+	background-size: 50% 50%;
+	background-position: center center;
+	
+}
+
+
+
+.userAvatar {
+	width: 40px;
+	height: 40px;
+	/*border: 1px #999 solid;*/
+	border-radius: 50%;
+	background: url(../../assets/user-circle.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+
+
+.headerLine2 {
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+.headerLine2 h2 {
+	font-size: 1.2rem;
+}
