@@ -7,7 +7,9 @@ import BasketPage from './components/pages/BasketPage';
 import Header from './components/header/Header';
 import { useEffect, useMemo, useState } from 'react';
 import { productsAPI } from './api/api';
-
+import { fetchingData } from './fetchingData/fetchingData';
+import { calcTotalItems, getIdsOfProducts } from './helpFunctions/helpFunctions';
+import Order from './components/pages/Order';
 
 
 
@@ -24,6 +26,18 @@ const App = () => {
   const [productVariations, setProductVariations] = useState([]); // цены, кол-во
   const [basketCount, setBasketCount] = useState(0);
   const [productTotal, setProductTotal] = useState(0); //общее кол-во продуктов
+
+  
+
+  /*
+  useEffect(() => {
+    fetchingData(currentRange).then(data => {
+      console.log(data)
+    })
+  }, [])
+
+*/
+
 
 
 
@@ -75,7 +89,7 @@ const App = () => {
 
   //Получить изображения продуктов
   useEffect(() => {
-    productsAPI.getProductsImages(idsOfProducts(products))
+    productsAPI.getProductsImages(getIdsOfProducts(products))
       .then(response => {
         setImages(response);
       });
@@ -84,7 +98,7 @@ const App = () => {
 
   //Получить цены продуктов и кол-во
   useEffect(() => {
-    productsAPI.getProductVariations(idsOfProducts(products))
+    productsAPI.getProductVariations(getIdsOfProducts(products))
       .then(response => {
         setProductVariations(response);
       });
@@ -96,28 +110,31 @@ const App = () => {
   }, [categories]);
 
 
-  const calcTotalItems = (response) => {
-    let index = response.headers['content-range'].indexOf('/');
-    let result = response.headers['content-range'].slice(index + 1);
-    return result;
-  }
 
-  const idsOfProducts = (products) => products.map(product => product.id);
+
+  useMemo(() => {
+    setBasketCount(productsInBasket.length)
+  }, [productsInBasket.length]);
+
+
+
+ 
 
   const addInButtonHandler = (dataForBasket) => {
-    setBasketCount(productsInBasket.length + 1);
+    // setBasketCount(productsInBasket.length + 1);
     dataForBasket = {...dataForBasket, id: productsInBasket.length + 1}
     setProductsInBasket([...productsInBasket, { ...dataForBasket }])
   }
 
 
-  console.log(products)
+  console.log('render')
 
 
 
   let range = {currentRange, setCurrentRange, productTotal};
 
-  // if(!categories && !currentCategory && !products && !images && !productVariations) return <>Loading...</>
+  
+  if(!categories && !currentCategory && !products && !images && !productVariations) return <>Loading...</>
 
   return (
     <>
@@ -130,8 +147,8 @@ const App = () => {
             setCurrentRange={setCurrentRange}
           />
           <Routes>
-            <Route exact path='/' element={<MainPage />} />
-            <Route path='/main-page' element={
+            {/* <Route exact path='/main-page' element={<MainPage />} /> */}
+            <Route path='/' element={
                 <MainPage
                   products={products}
                   images={images}
@@ -145,6 +162,8 @@ const App = () => {
                 productsInBasket={productsInBasket}
                 setProductsInBasket={setProductsInBasket}
             />} />
+            <Route path='/order' element={
+             <Order/>} />
             <Route path='*' element={<div>404 NOT FOUND</div>} />
           </Routes>
         </Provider>

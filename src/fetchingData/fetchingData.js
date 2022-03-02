@@ -1,6 +1,7 @@
+
 import { productsAPI } from '../api/api';
 
-export const fetchingData = () => {
+export const fetchingData = (currentRange) => {
 
     let isFetching = true;
 
@@ -10,10 +11,27 @@ export const fetchingData = () => {
     
     let data = {};
 
-    let getCategories = () => productsAPI.getCategories();
-    let getProducts = (currentCategory) => productsAPI.getProducts();
-    let getProductsImages = (products) => productsAPI.getProductsImages();
-    let getProductVariations = (products) => productsAPI.getProductVariations();
+    const getProducts = (params) => productsAPI.getProducts(params).then(resolve => resolve)
+
+    const getCategories = new Promise((resolve, reject) => resolve(productsAPI.getCategories(currentRange)))
+    .then(categories => {
+        console.log(categories)
+        return [getProducts(categories[0]), categories]
+    }).then(resolve => {
+        console.log(resolve)
+        const categoriesAndProducts = {product: resolve[0], categories: resolve[1]}
+        return [productsAPI.getProductsImages(idsOfProducts(resolve[1])), productsAPI.getProductVariations(idsOfProducts(resolve[1])), categoriesAndProducts ]
+    })
+
+
+    // const getProducts = new Promise((resolve, reject) => resolve(productsAPI.getProducts()))
+
+    // const getProductsImages = new Promise((resolve, reject) => resolve(productsAPI.getProductsImages()))
+    // const getProductVariations = new Promise((resolve, reject) => resolve(productsAPI.getProductVariations()))
+
+    return Promise.all([getCategories])
+    .then(resolve => resolve)
+    .catch(err => console.log('ОШИБКА!', err))
 
 
     let getData = productsAPI.getCategories();

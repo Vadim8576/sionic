@@ -4,9 +4,7 @@ import ProductsList from "../productsList/productsList";
 
 
 
-const MainPage = ({ products , images, productVariations, addInButtonHandler, range}) => {
-
-
+const MainPage = ({ products, images, productVariations, addInButtonHandler, range }) => {
     const {currentRange, setCurrentRange, productTotal} = range;
 
     const fetchingMoreProducts = () => {
