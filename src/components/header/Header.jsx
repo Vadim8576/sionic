@@ -8,7 +8,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 
 
-const Header = ({ categories, setCurrentCategory, basketCount, setCurrentRange }) => {
+const Header = ({ categories, setCurrentCategoryActionCreator, basketCount, setCurrentRange }) => {
 
 	let locationIsBasket = useLocation().pathname.includes('basket')
 
@@ -42,12 +42,17 @@ const Header = ({ categories, setCurrentCategory, basketCount, setCurrentRange }
 
 				{
 					locationIsBasket
-						? <h2>Корзина</h2>
+						? <>
+							<div className={css.headerBasketTitle}>
+								<h2>Корзина</h2>
+								<div className={css.cleanBasketBtn}>Очистить корзину</div>
+							</div>
+						</>
 						: <>
 							<h2>Категория товаров</h2>
 							<CategoriesList
 								categories={categories}
-								setCurrentCategory={setCurrentCategory}
+								setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
 								setCurrentRange={setCurrentRange}
 							/>
 						</>

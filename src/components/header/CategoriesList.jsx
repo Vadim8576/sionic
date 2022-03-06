@@ -4,7 +4,7 @@ import css from './categoriesList.module.css';
 import Category from './Category';
 
 
-const CategoriesList = ({categories, setCurrentCategory, setCurrentRange}) => {
+const CategoriesList = ({categories, setCurrentCategoryActionCreator, setCurrentRange}) => {
 
     
     let [categoryIsActive, setCategoryIsActive] = useState(0);
@@ -15,7 +15,7 @@ const CategoriesList = ({categories, setCurrentCategory, setCurrentRange}) => {
 			<div className={css.categories}>
                 {categories.map((category, index) =>
                     <Category
-                        setCurrentCategory={setCurrentCategory}
+                    setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
                         key={category.id}
                         category={category}
                         categoryIsActive={categoryIsActive}

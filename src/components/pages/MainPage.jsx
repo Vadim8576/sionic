@@ -4,7 +4,7 @@ import ProductsList from "../productsList/productsList";
 
 
 
-const MainPage = ({ products, images, productVariations, addInButtonHandler, range }) => {
+const MainPage = ({ products, addProductToBasket, range }) => {
     const {currentRange, setCurrentRange, productTotal} = range;
 
     const fetchingMoreProducts = () => {
@@ -16,9 +16,7 @@ const MainPage = ({ products, images, productVariations, addInButtonHandler, ran
             <button onClick={fetchingMoreProducts}>еще</button>
             <ProductsList
                 products={products}
-                images={images}
-                productVariations={productVariations}
-                addInButtonHandler={addInButtonHandler}
+                addProductToBasket={addProductToBasket}
             />
         </>
 

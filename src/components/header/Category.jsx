@@ -4,12 +4,12 @@ import { useState } from 'react';
 import css from './category.module.css';
 
 
-const Category = ({category, setCurrentCategory, categoryIsActive, setCategoryIsActive, index, setCurrentRange}) => {
+const Category = ({category, setCurrentCategoryActionCreator, categoryIsActive, setCategoryIsActive, index, setCurrentRange}) => {
     const {name, id} = category;
     
 
     const categoryHandler = (id) => {
-        setCurrentCategory(id);
+        setCurrentCategoryActionCreator(id);
         setCategoryIsActive(index);
         setCurrentRange(50);
     }

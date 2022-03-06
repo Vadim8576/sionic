@@ -114,3 +114,23 @@
 .headerLine2 h2 {
 	font-size: 1.2rem;
 }
+
+.headerBasketTitle {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+.headerBasketTitle h2 {
+	margin: 0 30px 0 0;
+}
+
+.cleanBasketBtn {
+	cursor:pointer;
+	color: #e91e63;
+}
+
+.cleanBasketBtn:hover {
+	color: #9f063a;
+}

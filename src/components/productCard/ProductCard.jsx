@@ -6,12 +6,16 @@ import { useMemo } from 'react';
 import AddnBasketButton from '../UI/addInBasketButton/AddInBasketButton';
 
 
-function ProductCard({ product, addInButtonHandler }) {
-    let { img, description, variants } = product;
+function ProductCard({ product, addProductToBasket }) {
+
+
+    // console.log(product)
+
+    let { imgs, description, variations } = product;
 
     let [currentProduct, setCurrentProduct] = useState(0);
 
-    let calc = Math.max(img?.length ? img?.length : 0, variants?.length ? variants?.length : 0);
+    let calc = Math.max(imgs?.length ? imgs?.length : 0, variations?.length ? variations?.length : 0);
 
     let [maxProductVariants, setmaxProductVariants] = useState(0);
 
@@ -23,12 +27,12 @@ function ProductCard({ product, addInButtonHandler }) {
 
 
     let dataForBasket = {
-        category_id: product.category_id,
         description: product.description,
         product_id: product.id,
-        img: img[currentProduct],
+        imgs: imgs && imgs[currentProduct],
         name: product.name,
-        variants: variants[currentProduct]
+        variations: variations && variations[currentProduct],
+        recurringProduct: 1
     }
 
 
@@ -36,13 +40,13 @@ function ProductCard({ product, addInButtonHandler }) {
 
     let cardImageStyle = {
         backgroundImage:
-            (img?.length > 0 && currentProduct < img?.length)
-                ? `url(https://test2.sionic.ru${img[currentProduct].image_url})`
+            (imgs?.length > 0 && currentProduct < imgs?.length)
+                ? `url(https://test2.sionic.ru${imgs[currentProduct].image_url})`
                 : `url(${noimage})`
     }
 
 
-    let priceStr = variants && variants[currentProduct]?.price;
+    let priceStr = variations && variations[currentProduct]?.price;
 
     return (
         <>
@@ -71,7 +75,7 @@ function ProductCard({ product, addInButtonHandler }) {
                 </div>
 
 
-                <AddnBasketButton addInButtonHandler={addInButtonHandler} dataForBasket={dataForBasket} />
+                <AddnBasketButton addProductToBasket={addProductToBasket} dataForBasket={dataForBasket} />
             </div>
         </>
     );

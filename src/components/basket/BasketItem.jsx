@@ -5,17 +5,16 @@ import noimage from '../../assets/noimage.png';
 const BasketItem = ({product, deleteBasketItem}) => {
 
 
-    let {img, name, variants, id } = product;
+    let {imgs, name, variations, id } = product;
 
-    console.log(product)
 
 
     name = name ? name : 'Нет данных';
-    let price = variants?.price ? variants?.price : null;
+    let price = variations?.price ? variations?.price : null;
 
     const bgi = {
         backgroundImage: 
-        img?.image_url ? `url(https://test2.sionic.ru${img.image_url})`
+        imgs?.image_url ? `url(https://test2.sionic.ru${imgs.image_url})`
         : `url(${noimage})`
     }
 
@@ -44,7 +43,7 @@ const BasketItem = ({product, deleteBasketItem}) => {
                         </div>
                     </div>
                     <div className={css.basketListItemDelBtnWrapper}>
-                        <div className={css.basketListItemDelBtn} onClick={() => deleteBasketItem(id)}></div>
+                        <div className={css.basketListItemDelBtn} onClick={() => deleteBasketItem(product.id)}></div>
                     </div>
                 </div>
             </div>

@@ -1,113 +1,34 @@
-import { Provider } from 'react-redux';
+import { connect, Provider, useDispatch } from 'react-redux';
 import './App.css';
 import MainPage from './components/pages/MainPage';
-import store from './redux/store';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import BasketPage from './components/pages/BasketPage';
 import Header from './components/header/Header';
 import { useEffect, useMemo, useState } from 'react';
-import { productsAPI } from './api/api';
-import { fetchingData } from './fetchingData/fetchingData';
-import { calcTotalItems, getIdsOfProducts } from './helpFunctions/helpFunctions';
 import Order from './components/pages/Order';
+import { fetchingCategories, fetchingProducts, setCurrentCategoryActionCreator } from './redux/reducer';
+import { loadBasketToStorage, saveBasketToStorage } from './helpFunctions/helpFunctions';
 
 
 
 
 
-const App = () => {
-  const [productsInBasket, setProductsInBasket] = useState([]);
 
-  const [categories, setCategories] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState('');
+const App = (props) => {
+
+  const {categories, products, productTotal, currentCategory, setCurrentCategoryActionCreator} = props;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('fetchingCategories')
+    dispatch(fetchingCategories(currentCategory));
+  }, [currentCategory])
+
+
+  const [productsInBasket, setProductsInBasket] = useState(loadBasketToStorage() || []);
   const [currentRange, setCurrentRange] = useState(50);
-  const [products, setProducts] = useState([]);
-  const [images, setImages] = useState([]);
-  const [productVariations, setProductVariations] = useState([]); // цены, кол-во
   const [basketCount, setBasketCount] = useState(0);
-  const [productTotal, setProductTotal] = useState(0); //общее кол-во продуктов
-
-  
-
-  /*
-  useEffect(() => {
-    fetchingData(currentRange).then(data => {
-      console.log(data)
-    })
-  }, [])
-
-*/
-
-
-
-
-  // let categories, currentCategory, productTotal, products, images, productVariations, error;
-
-  // const calcProductTotal = (response) => {
-
-  //     let index = response.headers['content-range'].indexOf('/');
-  //     let result = response.headers['content-range'].slice(index + 1);
-  //     return result;
-  // }
-
-  // useEffect(() => {
-
-  //     fetchingData().then(response => {
-  //         console.log(response)
-  //     })
-
-
-
-  //     setCategories(categories);
-  //     setcurrentCategory(currentCategory)
-  //     setProducts(products);
-  //     setImages(images);
-  //     setProductVariations(productVariations);
-  //     setProductTotal(productTotal);
-
-
-  // }, [])
-
-
-
-  //Получить Категории
-  useEffect(() => {   
-    productsAPI.getCategories(currentRange)
-      .then(response => {
-        setCategories(response);
-      })
-  }, [])
-
-  //Получить продукты
-  useEffect(() => {
-    productsAPI.getProducts(currentCategory, currentRange)
-      .then(response => {
-        setProductTotal(calcTotalItems(response))
-        setProducts(response.data);
-      })
-  }, [currentCategory, currentRange]);
-
-  //Получить изображения продуктов
-  useEffect(() => {
-    productsAPI.getProductsImages(getIdsOfProducts(products))
-      .then(response => {
-        setImages(response);
-      });
-  }, [products]);
-
-
-  //Получить цены продуктов и кол-во
-  useEffect(() => {
-    productsAPI.getProductVariations(getIdsOfProducts(products))
-      .then(response => {
-        setProductVariations(response);
-      });
-  }, [products]);
-
-
-  useMemo(() => {
-    categories[0]?.id && setCurrentCategory(categories[0].id)
-  }, [categories]);
 
 
 
@@ -117,14 +38,39 @@ const App = () => {
   }, [productsInBasket.length]);
 
 
-
  
 
-  const addInButtonHandler = (dataForBasket) => {
+  const addProductToBasket = (dataForBasket) => {
     // setBasketCount(productsInBasket.length + 1);
-    dataForBasket = {...dataForBasket, id: productsInBasket.length + 1}
+
+    // Кол-во одного вида товара в корзине!!!!!!!!!!!!!!!!!!!!!
+
+    // let recurringProduct = productsInBasket.filter(productInBasket => {
+    //   if (productInBasket.product_id === dataForBasket.product_id) return productInBasket.mount + 1
+    // }
+    // );
+
+    // if(recurringProduct.length) {
+    //   dataForBasket = [...productsInBasket]
+    // } else {
+    //   dataForBasket = {...dataForBasket, id: productsInBasket.length + 1, mount: 1}
+    // }
+
+
+    
+
+    dataForBasket = {...dataForBasket, id: productsInBasket.length + 1, mount: 1}
+    
     setProductsInBasket([...productsInBasket, { ...dataForBasket }])
+    
   }
+
+
+
+  useMemo(() => {
+    saveBasketToStorage(productsInBasket)
+  }, [productsInBasket])
+
 
 
   console.log('render')
@@ -134,15 +80,14 @@ const App = () => {
   let range = {currentRange, setCurrentRange, productTotal};
 
   
-  if(!categories && !currentCategory && !products && !images && !productVariations) return <>Loading...</>
+  // if(!categories && !currentCategory && !products && !images && !productVariations) return <>Loading...</>
 
   return (
     <>
-      <BrowserRouter>
-        <Provider store={store}>
+      
           <Header
             categories={categories}
-            setCurrentCategory={setCurrentCategory}
+            setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
             basketCount={basketCount}
             setCurrentRange={setCurrentRange}
           />
@@ -151,9 +96,7 @@ const App = () => {
             <Route path='/' element={
                 <MainPage
                   products={products}
-                  images={images}
-                  productVariations={productVariations}
-                  addInButtonHandler={addInButtonHandler}
+                  addProductToBasket={addProductToBasket}
                   range={range}
                 />
               } />
@@ -166,10 +109,34 @@ const App = () => {
              <Order/>} />
             <Route path='*' element={<div>404 NOT FOUND</div>} />
           </Routes>
-        </Provider>
-      </BrowserRouter>
+  
     </>
   );
 }
 
-export default App;
+
+
+const mapStateToProps = (state) => {
+// console.log(state)
+  return {
+    categories: state.categories,
+    products: state.products,
+    productTotal: state.productTotal,
+    currentCategory: state.currentCategory
+  }
+}
+
+
+
+// export default compose connect(mapStateToProps, 
+//   mapDispatchToProps,
+// )(App);
+
+
+  
+  export default connect(mapStateToProps,
+    {
+      fetchingCategories,
+      fetchingProducts,
+      setCurrentCategoryActionCreator
+    })(App);

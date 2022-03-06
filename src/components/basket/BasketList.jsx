@@ -5,6 +5,8 @@ import css from './basketList.module.css'
 
 const BasketList = ({productsInBasket, setProductsInBasket}) => {
 
+    console.log(productsInBasket)
+
     const deleteBasketItem = (id) => {
         let products = productsInBasket.filter(product => product.id !== id)
         console.log('после удаления', products)
