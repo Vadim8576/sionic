@@ -3,23 +3,24 @@ import BasketItem from "./BasketItem";
 import css from './basketList.module.css'
 
 
-const BasketList = ({productsInBasket, setProductsInBasket}) => {
+const BasketList = ({ productsInBasket, deleteBasketItem, setCount }) => {
 
-    console.log(productsInBasket)
-
-    const deleteBasketItem = (id) => {
-        let products = productsInBasket.filter(product => product.id !== id)
-        console.log('после удаления', products)
-        setProductsInBasket([...products]);
-    }
     console.log(productsInBasket)
 
     return (
         <div className={css.basketList}>
-            {productsInBasket.map(product => 
-                <BasketItem key={product.id} product={product} deleteBasketItem={deleteBasketItem}/>
-            )}
-            
+            {productsInBasket.length
+            ? productsInBasket.map((product, index) =>
+                <BasketItem
+                    key={product.id}
+                    product={product}
+                    deleteBasketItem={deleteBasketItem}
+                    setCount={setCount}
+                    index={index}
+                />
+            )
+            : <h3>Корзина пуста</h3>
+            }
         </div>
     )
 }

@@ -2,11 +2,9 @@ import React from "react";
 import css from './basketItem.module.css';
 import noimage from '../../assets/noimage.png';
 
-const BasketItem = ({product, deleteBasketItem}) => {
+const BasketItem = ({product, deleteBasketItem, setCount, index}) => {
 
-
-    let {imgs, name, variations, id } = product;
-
+    let {imgs, name, variations } = product;
 
 
     name = name ? name : 'Нет данных';
@@ -17,7 +15,6 @@ const BasketItem = ({product, deleteBasketItem}) => {
         imgs?.image_url ? `url(https://test2.sionic.ru${imgs.image_url})`
         : `url(${noimage})`
     }
-
 
     return (
         <>
@@ -32,14 +29,14 @@ const BasketItem = ({product, deleteBasketItem}) => {
                     <div className={css.countCostWrapper}>
                         <div className={css.basketListItemCount}>
                             <div className={css.CountWrapper}>
-                                <div className={css.CountMinus}>-</div>
-                                <div className={css.Count}>1</div>
-                                <div className={css.CountPlus}>+</div>
+                                <div className={css.CountMinus} onClick={() => setCount({index, value: -1})}>-</div>
+                                <div className={css.Count}>{product.count}</div>
+                                <div className={css.CountPlus} onClick={() => setCount({index, value: 1})}>+</div>
                             </div>
                         </div>
                         <div className={css.basketListItemCost}>
-                            <div className={css.coast}>{price ? `от ${price}` : 'нет данных'}</div>
-                            <div className={css.percent}>{price ? `от ${price}` : 'нет данных'}</div>
+                            <div className={css.coast}>{price ? 'от ' + price + ' ₽' : 'нет данных'}</div>
+                            <div className={css.percent}>{price ? 'от ' + price + ' ₽' : 'нет данных'}</div>
                         </div>
                     </div>
                     <div className={css.basketListItemDelBtnWrapper}>

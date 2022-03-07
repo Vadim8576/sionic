@@ -32,7 +32,8 @@ function ProductCard({ product, addProductToBasket }) {
         imgs: imgs && imgs[currentProduct],
         name: product.name,
         variations: variations && variations[currentProduct],
-        recurringProduct: 1
+        count: 1,
+        id: variations && product?.id + '_' + variations[currentProduct]?.id
     }
 
 

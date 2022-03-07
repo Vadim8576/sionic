@@ -8,7 +8,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 
 
-const Header = ({ categories, setCurrentCategoryActionCreator, basketCount, setCurrentRange }) => {
+const Header = ({ categories, setCurrentCategoryActionCreator, basketCount, setCurrentRange, cleanBasket, setCurrentRangeActionCreator }) => {
 
 	let locationIsBasket = useLocation().pathname.includes('basket')
 
@@ -35,7 +35,9 @@ const Header = ({ categories, setCurrentCategoryActionCreator, basketCount, setC
 
 
 				<div className={css.headerLine1UserAvatar}>
-					<div className={css.userAvatar}></div>
+					<NavLink to={'/order'} className='link'>
+						<div className={css.userAvatar}></div>
+					</NavLink>
 				</div>
 			</div>
 			<div className={css.headerLine2}>
@@ -45,7 +47,7 @@ const Header = ({ categories, setCurrentCategoryActionCreator, basketCount, setC
 						? <>
 							<div className={css.headerBasketTitle}>
 								<h2>Корзина</h2>
-								<div className={css.cleanBasketBtn}>Очистить корзину</div>
+								<div className={css.cleanBasketBtn} onClick={cleanBasket}>Очистить корзину</div>
 							</div>
 						</>
 						: <>
@@ -54,6 +56,7 @@ const Header = ({ categories, setCurrentCategoryActionCreator, basketCount, setC
 								categories={categories}
 								setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
 								setCurrentRange={setCurrentRange}
+								setCurrentRangeActionCreator={setCurrentRangeActionCreator}
 							/>
 						</>
 				}

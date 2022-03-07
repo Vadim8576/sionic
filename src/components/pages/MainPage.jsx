@@ -4,11 +4,14 @@ import ProductsList from "../productsList/productsList";
 
 
 
-const MainPage = ({ products, addProductToBasket, range }) => {
-    const {currentRange, setCurrentRange, productTotal} = range;
+const MainPage = ({ products, addProductToBasket, range, setCurrentRangeActionCreator }) => {
+    const {currentRange, productTotal} = range;
 
     const fetchingMoreProducts = () => {
-        if((currentRange + 50) <= productTotal) setCurrentRange(currentRange + 50)
+        if((currentRange + 50) <= productTotal) {
+            
+            setCurrentRangeActionCreator(currentRange + 50)
+        }
     }
 
     return (

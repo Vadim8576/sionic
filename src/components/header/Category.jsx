@@ -4,14 +4,15 @@ import { useState } from 'react';
 import css from './category.module.css';
 
 
-const Category = ({category, setCurrentCategoryActionCreator, categoryIsActive, setCategoryIsActive, index, setCurrentRange}) => {
+const Category = ({category, setCurrentCategoryActionCreator, categoryIsActive, setCategoryIsActive, index, setCurrentRangeActionCreator}) => {
     const {name, id} = category;
     
 
     const categoryHandler = (id) => {
         setCurrentCategoryActionCreator(id);
         setCategoryIsActive(index);
-        setCurrentRange(50);
+        setCurrentRangeActionCreator(50)
+        // setCurrentRange(50);
     }
 
     let style =  css.categoriesItem;
