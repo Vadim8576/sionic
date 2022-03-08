@@ -3,7 +3,7 @@
 
 .basketContainer {
 	width: 100%;
-	height: 100vh;
+	/* height: 100vh; */
 	padding: 0 40px;
 }
 
@@ -79,8 +79,7 @@
 	cursor:pointer;
 }
 
-.orderBtn:hover {
-	
+.orderBtn:hover {	
 	color: blue;
 	background: transparent;
 }
@@ -89,4 +88,12 @@
 .orderBtn:active {
 	border: 1px blue solid;
 
+}
+
+.orderBtnDisabled {
+	pointer-events: none;
+}
+
+.orderBtnDisabled .orderBtn {
+	opacity: 0.5;
 }

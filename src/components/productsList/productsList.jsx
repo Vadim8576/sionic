@@ -1,6 +1,6 @@
 import React from 'react';
-import { useMemo } from 'react';
 import ProductCard from '../productCard/ProductCard';
+import css from './productsList.module.css';
 
 
 function ProductsList({products, addProductToBasket}) {
@@ -23,7 +23,7 @@ function ProductsList({products, addProductToBasket}) {
     return (
         <>
             {products.length
-            && <div className="cardContainer">
+            && <div className={css.cardsContainer}>
                 {products.map(
                     product =>
                     <ProductCard

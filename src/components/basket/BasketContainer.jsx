@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { basketSum } from "../../helpFunctions/helpFunctions";
 import css from './basketContainer.module.css';
 import BasketList from "./BasketList";
 
@@ -6,7 +8,7 @@ import BasketList from "./BasketList";
 const BasketContainer = ({productsInBasket, setProductsInBasket}) => {
 
     const [sum, setSum] = useState(0)
-
+    
     const setCount = (obj) => {
         let {index, value} = obj;
         let productCount = value < 0 ? productsInBasket[index].count - 1 : productsInBasket[index].count + 1;
@@ -15,11 +17,11 @@ const BasketContainer = ({productsInBasket, setProductsInBasket}) => {
             return;
         }
 
-        setProductsInBasket(productsInBasket.map((product,index2) => {
+        setProductsInBasket(productsInBasket.map((product, index2) => {
             if(index === index2) {
-                product.count = productCount
+                product.count = productCount;
             }
-            return product
+            return product;
         }))
     }
     
@@ -31,12 +33,14 @@ const BasketContainer = ({productsInBasket, setProductsInBasket}) => {
 
   
     const calcSum = () => {
-        let s = 0;
-        productsInBasket.forEach(product => {
-            s += product.variations.price * product.count
-        })
+        let s = basketSum(productsInBasket);
         setSum(s)
     }
+
+    // let style = css.orderBtn;
+    // if(productsInBasket.length <= 0) {
+    //     style += ' ' + css.orderBtnDisabled;
+    // }
 
     useMemo(() => calcSum(), [productsInBasket])
 
@@ -56,11 +60,20 @@ const BasketContainer = ({productsInBasket, setProductsInBasket}) => {
                                 {sum} &#8381;
                             </div>
                         </div>
-                        <div className={css.orderBtnwrapper}>
-                            <div className={css.orderBtn}>Оформить</div>
+                        {true &&
+                            <div className={css.orderBtnwrapper}>
+                            <NavLink
+                                to={'/order'}
+                                className={
+                                    productsInBasket.length <= 0 && css.orderBtnDisabled
+                                }
+                            >
+                                <div className={css.orderBtn}>Оформить</div>
+                            </NavLink>
                         </div>
+                        }
+                        
                     </div>
-
 
                     <BasketList
                         productsInBasket={productsInBasket}

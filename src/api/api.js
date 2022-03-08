@@ -1,19 +1,13 @@
 import * as axios from 'axios';
 
-// создаем настройки axios
 const instanse = axios.create({
     baseURL: 'https://test2.sionic.ru/api/'
 });
 
 
 export const productsAPI = {
-
     getProducts(currentCategory = '', currentRange = '') {
         let params = '';
-
-        console.log('getProducts', currentRange);
-        console.log('getProducts', currentCategory  );
-
         if(currentCategory) params = `filter={"category_id":[${currentCategory}]}`;
         if(currentRange) {
             let range = (currentRange - 50).toString();
@@ -34,7 +28,7 @@ export const productsAPI = {
     },
     getProductsImages(params = '', rangeQuery = '') {
         params = `${rangeQuery}&filter={"product_id":[${params}]}`;
-        // console.log(params)
+
         return instanse
             .get(`productImages?${params}`)
             .then(response => {
@@ -42,7 +36,6 @@ export const productsAPI = {
             })
     },
     getCategories(params = '') {
-        console.log('getCategories')
         return instanse
             .get(`Categories`)
             .then(response => {
@@ -50,7 +43,6 @@ export const productsAPI = {
             })
     },
     getProductVariations(params = '', rangeQuery = '') {
-        // params = `filter={"product_id":[${params}]}`;
         params = `${rangeQuery}&filter={"product_id":[${params}]}`;
         
         return instanse

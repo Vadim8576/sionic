@@ -4,7 +4,7 @@ import { useState } from 'react';
 import css from './category.module.css';
 
 
-const Category = ({category, setCurrentCategoryActionCreator, categoryIsActive, setCategoryIsActive, index, setCurrentRangeActionCreator}) => {
+const Category = ({category, setQueryType, setCurrentCategoryActionCreator, categoryIsActive, setCategoryIsActive, index, setCurrentRangeActionCreator}) => {
     const {name, id} = category;
     
 
@@ -12,6 +12,7 @@ const Category = ({category, setCurrentCategoryActionCreator, categoryIsActive, 
         setCurrentCategoryActionCreator(id);
         setCategoryIsActive(index);
         setCurrentRangeActionCreator(50)
+        setQueryType('NEW')
         // setCurrentRange(50);
     }
 

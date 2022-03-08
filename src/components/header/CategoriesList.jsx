@@ -4,7 +4,7 @@ import css from './categoriesList.module.css';
 import Category from './Category';
 
 
-const CategoriesList = ({categories, setCurrentCategoryActionCreator, setCurrentRange, setCurrentRangeActionCreator}) => {
+const CategoriesList = ({categories, setQueryType, setCurrentCategoryActionCreator, setCurrentRange, setCurrentRangeActionCreator}) => {
 
     
     let [categoryIsActive, setCategoryIsActive] = useState(0);
@@ -23,7 +23,7 @@ const CategoriesList = ({categories, setCurrentCategoryActionCreator, setCurrent
                         setCategoryIsActive={setCategoryIsActive}
                         index={index}
                         setCurrentRange={setCurrentRange}
-
+                        setQueryType={setQueryType}
                     />)}
 			</div>
         </>

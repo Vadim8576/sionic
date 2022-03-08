@@ -1,0 +1,47 @@
+.historyItemsWrapper {
+    width: 450px;
+    min-width: 450px;
+    border: 1px #888 solid;
+    border-radius: 30px;
+    padding: 15px;
+    font-size: .9rem;
+    font-weight: bold;
+    flex: 1 1 1 auto;
+    margin: 0 10px 10px 0;
+}
+
+
+
+.historyItemsHeader {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 15px 5px 0;
+}
+
+.row span {
+    font-weight: lighter;
+}
+
+.orderNumber {
+    color:rgb(28, 137, 209);
+}
+
+
+.adres {
+    width: 180px;
+    height: 30px;
+}
+
+.adres p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

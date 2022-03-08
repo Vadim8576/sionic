@@ -1,0 +1,31 @@
+.orderWrapper {
+    width: 80%;
+    display: flex;
+
+}
+
+.orderSide {
+    width: 50%;
+    padding: 30px;
+}
+
+
+.orderSum {
+    background-color: aquamarine;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.orderSumLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.orderSumLine span {
+    padding: 5px 0;
+}
+
+.orderSumLine:last-child span {
+    font-weight: bold;
+}

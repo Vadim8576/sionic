@@ -2,15 +2,13 @@ import React from "react";
 import ProductsList from "../productsList/productsList";
 
 
-
-
-const MainPage = ({ products, addProductToBasket, range, setCurrentRangeActionCreator }) => {
+const MainPage = ({ products, setQueryType, addProductToBasket, range, setCurrentRangeActionCreator }) => {
     const {currentRange, productTotal} = range;
 
     const fetchingMoreProducts = () => {
-        if((currentRange + 50) <= productTotal) {
-            
+        if((currentRange + 50) <= productTotal) {         
             setCurrentRangeActionCreator(currentRange + 50)
+            setQueryType('ADD')
         }
     }
 

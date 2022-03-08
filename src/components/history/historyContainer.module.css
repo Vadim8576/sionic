@@ -1,0 +1,12 @@
+.historyContainer {
+    width: 100%;
+	/* height: 100vh; */
+	padding: 40px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	white-space: nowrap;
+	flex-wrap: wrap;
+
+	margin: 0 -5px;
+}
