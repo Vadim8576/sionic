@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sionic/static/css/main.92d1748d.css",
-    "main.js": "/sionic/static/js/main.e38578b1.js",
+    "main.js": "/sionic/static/js/main.3d5f500c.js",
     "static/media/noimage.png": "/sionic/static/media/noimage.0336591dd70a5990b239.png",
     "static/media/apple-alt.svg": "/sionic/static/media/apple-alt.6d7ca078c73074c4834b.svg",
     "index.html": "/sionic/index.html",
@@ -11,10 +11,10 @@
     "static/media/map-marker-alt.svg": "/sionic/static/media/map-marker-alt.925d628325014e5e84ff2c21e980b70e.svg",
     "static/media/angle-left.svg": "/sionic/static/media/angle-left.a6cbd8e6490e5706d747590a88269141.svg",
     "main.92d1748d.css.map": "/sionic/static/css/main.92d1748d.css.map",
-    "main.e38578b1.js.map": "/sionic/static/js/main.e38578b1.js.map"
+    "main.3d5f500c.js.map": "/sionic/static/js/main.3d5f500c.js.map"
   },
   "entrypoints": [
     "static/css/main.92d1748d.css",
-    "static/js/main.e38578b1.js"
+    "static/js/main.3d5f500c.js"
   ]
 }
