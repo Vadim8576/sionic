@@ -13,13 +13,19 @@ const MainPage = ({ products, setQueryType, addProductToBasket, range, setCurren
     }
 
     return (
-        <>     
-            <button onClick={fetchingMoreProducts}>еще</button>
+        <div style={{width: '100%'}}> 
+            
             <ProductsList
                 products={products}
                 addProductToBasket={addProductToBasket}
             />
-        </>
+            <br/>
+            <br/>
+            <div style={{width: '100%', display: "flex", justifyContent: 'center', marginBottom: '50px'}}>
+                <button onClick={fetchingMoreProducts}>еще</button>
+            </div>
+            
+        </div>
 
     )
 }

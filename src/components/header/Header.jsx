@@ -25,10 +25,10 @@ const Header = ({ categories, setQueryType, setCurrentCategoryActionCreator, bas
 						<img src={logo} />
 					</NavLink>
 				</div>
-				{/* <div className={css.headerLine1GeoPosition}>
-					<img src={geoPositionMarker} />
-					<p>Санкт-Петербург, Ленинский пр., д. 344</p>
-				</div> */}
+				<div className={css.headerLine1GeoPosition}>
+					{/* <img src={geoPositionMarker} />
+					<p>Санкт-Петербург, Ленинский пр., д. 344</p> */}
+				</div>
 				<div className={css.headerLine1Seach}>
 					{/* <input type='text' placeholder='Поиск бренда, товара, категории' />
 					<button>S</button> */}
@@ -44,8 +44,9 @@ const Header = ({ categories, setQueryType, setCurrentCategoryActionCreator, bas
 					</InputGroup>
 				</div>
 
-				<BasketIcon basketCount={basketCount} />
-
+				<div className={css.headerLine1Basket}>
+					<BasketIcon basketCount={basketCount} />
+				</div>
 
 				<div className={css.headerLine1UserAvatar}>
 					<NavLink to={'/history'}>

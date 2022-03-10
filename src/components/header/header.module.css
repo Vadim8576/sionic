@@ -9,17 +9,15 @@
 .headerLine1 {
 	width: 100%;
 	height: 45px;
-	/* display: grid;
-	grid-template-columns: 100px 125px auto 60px 60px;
-	grid-template-columns: 100px auto 60px 60px;
+	display: grid;
+	grid-template-columns: 100px 50px auto 60px 60px;
 	grid-template-rows: auto;
-	justify-items: center; */
-	display: flex;
+	justify-items: center;
 }
 
-.headerLine1Logo {
+/* .headerLine1Logo {
 	width: 100px;
-}
+} */
 
 .headerLine1Logo,
 .headerLine1GeoPosition,
@@ -30,17 +28,20 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* width: 100%; */
-    padding: 0 20px;
+	/* width: 1%; */
 }
 
+
+.headerLine1Seach {
+	width: 60%;
+}
 
 /* .headerLine1GeoPosition img {
 	width: 20px;
 	height: 20px;
-} */
+}
 
-/* .headerLine1GeoPosition {
+.headerLine1GeoPosition {
 	padding-left: 20px;
 }
 
@@ -51,9 +52,9 @@
 	color: #999;
 } */
 
-.headerLine1Seach {
+/* .headerLine1Seach {
 	width: 60%;
-}
+} */
 
 .headerLine1Seach input {
 	width: 80%;
@@ -95,9 +96,9 @@
 	
 }
 
-.headerLine1UserAvatar {
+/* .headerLine1UserAvatar {
 	width: 50px;
-}
+} */
 
 
 .userAvatar {
@@ -149,16 +150,41 @@
 
 @media screen and (max-width: 700px) {
 	.headerLine1 {
-		grid-template-columns: 100px auto 60px 60px;
+		grid-template-columns: 100px 0px auto 60px 60px;
 	}
 }
 
 @media screen and (max-width: 500px) {
 	.headerLine1 {
 		height: 90px;
-		/* grid-template-areas:
-		"A D D D D D D E E E E E"
-		"C C C C C C C C C C C C"; */
+		grid-template-areas:
+		"A B B B B B B B B B D E"
+		"C C C C C C C C C C C C";
+	}
+
+	.headerLine1Logo {
+		grid-area: A;
+	}
+	
+	.headerLine1GeoPosition {
+		grid-area: B;
+	}
+	
+	.headerLine1Seach {
+		grid-area: C;
+	}
+	
+	.headerLine1Basket {
+		grid-area: D;
+	}
+	
+	.headerLine1UserAvatar {
+		grid-area: E;
+	}
+	
+	.headerLine1Seach {
+		width: 100%;
+
 	}
 }
 
@@ -167,8 +193,8 @@
 @media screen and (max-width: 400px) {
 	.headerLine1 {
 		height: 90px;
-		/* grid-template-areas:
-		"A D D D E E"
-		"C C C C C C"; */
+		grid-template-areas:
+		"A B B B D E"
+		"C C C C C C";
 	}
 }

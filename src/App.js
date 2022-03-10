@@ -61,22 +61,22 @@ const App = (props) => {
   }
 
 
-  console.log('render')
-
   let range = { currentRange, productTotal };
 
 
   return (
     <>
-
-      <Header
-        categories={categories}
-        setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
-        basketCount={basketCount}
-        cleanBasket={cleanBasket}
-        setCurrentRangeActionCreator={setCurrentRangeActionCreator}
-        setQueryType={setQueryType}
-      />
+      <div style={{width: '100%'}}>
+        <Header
+          categories={categories}
+          setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
+          basketCount={basketCount}
+          cleanBasket={cleanBasket}
+          setCurrentRangeActionCreator={setCurrentRangeActionCreator}
+          setQueryType={setQueryType}
+        />
+      </div>
+      
       <Routes>
         {/* <Route exact path='/main-page' element={<MainPage />} /> */}
         <Route path='/' element={

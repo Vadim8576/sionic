@@ -4,19 +4,19 @@ import css from './basketIcon.module.css';
 
 
 
-const BasketIcon = ({basketCount}) => {
+const BasketIcon = ({ basketCount }) => {
 
     return (
-        <div className={css.headerLine1Basket}>
-            
+
+        <>
             <NavLink to={'/basket/'} className='link'>
                 <div className={css.basketBtnWrapper}>
-                <div className={css.basketIcon}></div>
-                <div className={css.basketCount}>{basketCount < 100 ? basketCount : '99+'}</div>
-            </div>
+                    <div className={css.basketIcon}></div>
+                    <div className={css.basketCount}>{basketCount < 100 ? basketCount : '99+'}</div>
+                </div>
             </NavLink>
-            
-        </div>
+
+        </>
     )
 }
 

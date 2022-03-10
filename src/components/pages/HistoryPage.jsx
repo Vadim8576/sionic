@@ -6,7 +6,10 @@ import HistoryContainer from "../history/HistoryContainer";
 const OrderHistoryPage = () => {
 
     return (
-        <HistoryContainer />
+        <div style={{ width: '100%' }}>
+            <HistoryContainer />
+        </div>
+
     )
 }
 

@@ -6,9 +6,9 @@ const BasketPage = ({productsInBasket, setProductsInBasket}) => {
 
 
     return (
-        <>
+        <div style={{width: '100%'}}>
             <BasketContainer productsInBasket={productsInBasket} setProductsInBasket={setProductsInBasket}/>
-        </>
+        </div>
     )
 }
 
