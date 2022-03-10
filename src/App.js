@@ -79,7 +79,7 @@ const App = (props) => {
       
       <Routes>
         {/* <Route exact path='/main-page' element={<MainPage />} /> */}
-        <Route path='/' element={
+        <Route path='/sionic' element={
           <MainPage
             products={productList}
             addProductToBasket={addProductToBasket}
@@ -97,7 +97,7 @@ const App = (props) => {
           <OrderPage productsInBasket={productsInBasket} cleanBasket={cleanBasket} />} />
           <Route path='/history' element={
             <HistoryPage />} />
-  
+          
         <Route path='*' element={<div>404 NOT FOUND</div>} />
       </Routes>
 

@@ -21,7 +21,7 @@ const Header = ({ categories, setQueryType, setCurrentCategoryActionCreator, bas
 		<header className={css.pageHeader}>
 			<div className={css.headerLine1}>
 				<div className={css.headerLine1Logo}>
-					<NavLink to={'/'}>
+					<NavLink to={'/sionic'}>
 						<img src={logo} />
 					</NavLink>
 				</div>
