@@ -20,15 +20,8 @@ export const fetchingCategories = (params: string = '') => async (dispatch: Disp
             console.log('Не удалось получить категории')
         })
 
-    let currentCategoriesId: number;
-    // Если категория еще не установлена (первый запуск)
-    if (!params) {
-        currentCategoriesId = categories[0].id
-        dispatch(setCurrentCategoryActionCreator(currentCategoriesId));
-    } else {
-        currentCategoriesId = Number(params)
-    }
-
+    let currentCategoriesId: number = categories[0].id
+    dispatch(setCurrentCategoryActionCreator(currentCategoriesId));
 }
 
 
