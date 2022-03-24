@@ -6,6 +6,7 @@
 
 .orderSide {
     width: 50%;
+    min-width: 330px;
     padding: 30px;
 }
 
@@ -28,4 +29,32 @@
 
 .orderSumLine:last-child span {
     font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+	.orderWrapper {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.orderWrapper {
+		flex-direction: column;
+	}
+
+    .orderSide:first-child {
+        order: 2;
+        width: 100%
+    }
+
+    .orderSide:last-child {
+        order: 1;
+        width: 50%;
+    }
+
+}
+
+
+@media screen and (max-width: 800px) {
+
 }

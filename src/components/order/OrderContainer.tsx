@@ -3,7 +3,12 @@ import { saveOrdersToStorage } from "../../helpFunctions/helpFunctions";
 import Order from "./Order";
 import css from './orderContainer.module.css'
 
-const OrderContainer = ({productsInBasket, cleanBasket}) => {
+
+interface OrderContainerProps {
+    cleanBasket: () => void
+}
+
+const OrderContainer: React.FC<OrderContainerProps> = ({cleanBasket}) => {
 
     const saveOrder = (order) => {
         saveOrdersToStorage(order);
@@ -12,7 +17,6 @@ const OrderContainer = ({productsInBasket, cleanBasket}) => {
     return (
         <div className={css.orderContainer}>
             <Order
-                productsInBasket={productsInBasket}
                 saveOrder={saveOrder}
                 cleanBasket={cleanBasket}
             />

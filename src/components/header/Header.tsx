@@ -1,19 +1,35 @@
 import React from 'react';
 import css from './header.module.css';
 import logo from '../../assets/logo.png'
-import geoPositionMarker from '../../assets/map-marker-alt.svg'
 import CategoriesList from './CategoriesList';
 import BasketIcon from '../UI/basketIcon/BasketIcon'
 import { NavLink, useLocation } from 'react-router-dom';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import { Categories } from '../../types/types';
 
 
+interface HeaderProps {
+	categories: Categories[]
+	setQueryType: (s: string) => void
+	setCurrentCategoryAC: (id: number) => void
+	basketCount: number
+	cleanBasket: () => void
+	setCurrentRangeAC: (n: number) => void
+}
 
-const Header = ({ categories, setQueryType, setCurrentCategoryActionCreator, basketCount, setCurrentRange, cleanBasket, setCurrentRangeActionCreator }) => {
 
-	let locationIsBasket = useLocation().pathname.includes('basket')
-	let locationIsOrder = useLocation().pathname.includes('order')
-	let locationIsHistory = useLocation().pathname.includes('history')
+const Header: React.FC<HeaderProps> = ({
+	categories,
+	setQueryType,
+	setCurrentCategoryAC,
+	basketCount,
+	cleanBasket,
+	setCurrentRangeAC
+}) => {
+
+	let locationIsBasket: boolean = useLocation().pathname.includes('basket')
+	let locationIsOrder: boolean = useLocation().pathname.includes('order')
+	let locationIsHistory: boolean = useLocation().pathname.includes('history')
 
 
 
@@ -74,9 +90,9 @@ const Header = ({ categories, setQueryType, setCurrentCategoryActionCreator, bas
 						<h2>Категории товаров</h2>
 						<CategoriesList
 							categories={categories}
-							setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
-							setCurrentRange={setCurrentRange}
-							setCurrentRangeActionCreator={setCurrentRangeActionCreator}
+							setCurrentCategoryAC={setCurrentCategoryAC}
+							// setCurrentRange={setCurrentRange}
+							setCurrentRangeAC={setCurrentRangeAC}
 							setQueryType={setQueryType}
 						/>
 					</>

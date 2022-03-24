@@ -1,9 +1,14 @@
 import React from "react";
 import HistoryItem from "./HistoryItem";
-import css from './historyList.module.css';
+import { HistoriItemType } from '../../types/types';
+
+interface HistoryListProps {
+    historyList: HistoriItemType[]
+}
 
 
-const HistoryList = ({historyList}) => {
+
+const HistoryList: React.FC<HistoryListProps> = ({historyList}) => {
 
     return (
         <>

@@ -145,3 +145,34 @@
 	border: none;
 	cursor:pointer;
 }
+
+
+
+@media screen and (max-width: 700px) {
+
+	.basketListItem {
+		
+		
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: column;
+		/*flex-wrap: nowrap;*/
+   }
+   
+   
+   .basketListItemSection1 {
+	   width: 100%;
+   }
+   
+   
+   .basketListItemSection2 {
+	   width: 100%;
+	   padding: 10px 0;
+   }
+
+   .countCostWrapper {
+	   justify-content: space-between;
+   }
+}
+
+

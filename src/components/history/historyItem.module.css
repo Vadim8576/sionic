@@ -1,19 +1,18 @@
 .historyItemsWrapper {
-    width: 450px;
-    min-width: 450px;
+    width: 420px;
+    min-width: 420px;
     border: 1px #888 solid;
     border-radius: 30px;
     padding: 15px;
     font-size: .9rem;
     font-weight: bold;
-    flex: 1 1 1 auto;
     margin: 0 10px 10px 0;
 }
 
 
 
 .historyItemsHeader {
-    width: 100%;
+    width: 125px;
     padding: 10px 0;
 }
 
@@ -35,13 +34,14 @@
 
 
 .adres {
-    width: 180px;
+    width: 160px;
     height: 30px;
+    overflow: hidden;
 }
 
 .adres p {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    overflow: hidden;
+   
 }

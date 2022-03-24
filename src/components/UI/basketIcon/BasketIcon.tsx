@@ -2,9 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import css from './basketIcon.module.css';
 
+interface BasketIconProps {
+    basketCount: number
+}
 
-
-const BasketIcon = ({ basketCount }) => {
+const BasketIcon: React.FC<BasketIconProps> = ({ basketCount }) => {
 
     return (
 

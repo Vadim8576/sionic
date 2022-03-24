@@ -1,15 +1,21 @@
 import React from "react";
-import { basketCount, basketSum } from "../../helpFunctions/helpFunctions";
+import { historyCount, historySum } from "../../helpFunctions/helpFunctions";
 import css from './historyItem.module.css';
+import { HistoriItemType } from '../../types/types';
 
-const HistoryItem = ({historiItem}) => {
+interface HistoryItemProps {
+    historiItem: HistoriItemType
+}
+
+
+const HistoryItem: React.FC<HistoryItemProps> = ({historiItem}) => {
 
     let {adress, orderData} = historiItem;
 
 
-    let sum = basketSum(historiItem.products);
+    let sum: number = historySum(historiItem);
+    let count: number = historyCount(historiItem);
 
-    let count = basketCount(historiItem.products);
 
     return (
         <div className={css.historyItemsWrapper}>

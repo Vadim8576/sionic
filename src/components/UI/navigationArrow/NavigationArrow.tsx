@@ -3,7 +3,14 @@ import css from './navigationArrow.module.css';
 import arrow from '../../../assets/angle-left.svg'
 
 
-const NavigationArrow = ({type, setCurrentProduct, currentProduct, maxProductVariants}) => {  
+interface NavigationArrowProps {
+    type: string
+    setCurrentProduct: any
+    currentProduct: number
+    maxProductVariants: number
+}
+
+const NavigationArrow: React.FC<NavigationArrowProps> = ({type, setCurrentProduct, currentProduct, maxProductVariants}) => {  
     let style = css.arrow;
     if (type === 'right') style = css.arrow + ' ' + css.arrowRight;
 

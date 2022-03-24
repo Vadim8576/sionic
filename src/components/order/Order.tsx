@@ -1,12 +1,20 @@
 import React, { useMemo } from "react";
 import { basketSum, loadBasketToStorage } from "../../helpFunctions/helpFunctions";
+import { HistoriItemType } from "../../types/types";
 import OrderForm from "../orderForm/OrderForm";
 import css from './order.module.css';
 
-const Order = ({saveOrder, cleanBasket}) => {
 
-    let sum;
-    let productsInBasket = loadBasketToStorage();
+interface OrderProps {
+    saveOrder: (obj: HistoriItemType[]) => void
+    cleanBasket: () => void
+}
+
+
+const Order: React.FC<OrderProps> = ({saveOrder, cleanBasket}) => {
+
+    let sum: number;
+    let productsInBasket: [] = loadBasketToStorage();
 
 
 

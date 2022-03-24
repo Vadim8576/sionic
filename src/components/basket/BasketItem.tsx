@@ -1,8 +1,21 @@
 import React from "react";
 import css from './basketItem.module.css';
 import noimage from '../../assets/noimage.png';
+import { ProductsInBasket, Obj } from '../../types/types';
 
-const BasketItem = ({product, deleteBasketItem, setCount, index}) => {
+
+
+
+
+interface BasketItemProps {
+    product: ProductsInBasket
+    deleteBasketItem: (s: string) => void
+    setCount: (obj: Obj) => void
+    index: number
+}
+
+
+const BasketItem: React.FC<BasketItemProps> = ({product, deleteBasketItem, setCount, index}) => {
 
     let {imgs, name, variations } = product;
 

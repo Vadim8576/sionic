@@ -4,12 +4,34 @@ import { basketSum } from "../../helpFunctions/helpFunctions";
 import css from './basketContainer.module.css';
 import BasketList from "./BasketList";
 
+interface ProductsInBasket {
+    count: number
+    description: string
+    id: string
+    imgs: any
+    name: string
+    product_id: string
+    variations: any
+}
 
-const BasketContainer = ({productsInBasket, setProductsInBasket}) => {
+interface BasketContainerProps {
+    productsInBasket: ProductsInBasket[]
+    setProductsInBasket: (obj: ProductsInBasket[]) => void
+}
+
+interface Obj {
+    index: number
+    value: number
+}
+
+
+const BasketContainer: React.FC<BasketContainerProps> = ({productsInBasket, setProductsInBasket}) => {
 
     const [sum, setSum] = useState(0)
+
+    console.log(productsInBasket)
     
-    const setCount = (obj) => {
+    const setCount = (obj: Obj) => {
         let {index, value} = obj;
         let productCount = value < 0 ? productsInBasket[index].count - 1 : productsInBasket[index].count + 1;
         if(productCount <= 0) {
@@ -26,24 +48,18 @@ const BasketContainer = ({productsInBasket, setProductsInBasket}) => {
     }
     
 
-    const deleteBasketItem = (id) => {
-        let products = productsInBasket.filter(product => product.id !== id)
+    const deleteBasketItem = (id: string) => {
+        let products: ProductsInBasket[] = productsInBasket.filter(product => product.id !== id)
         setProductsInBasket([...products]);
     }
 
   
     const calcSum = () => {
-        let s = basketSum(productsInBasket);
+        let s: number = basketSum(productsInBasket);
         setSum(s)
     }
 
-    // let style = css.orderBtn;
-    // if(productsInBasket.length <= 0) {
-    //     style += ' ' + css.orderBtnDisabled;
-    // }
-
-    useMemo(() => calcSum(), [productsInBasket])
-
+     useMemo(() => calcSum(), [productsInBasket])
 
     return (
         <>

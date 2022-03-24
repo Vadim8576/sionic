@@ -4,19 +4,25 @@ import noimage from '../../assets/noimage.png';
 import NavigationArrow from '../UI/navigationArrow/NavigationArrow';
 import { useMemo } from 'react';
 import AddnBasketButton from '../UI/addInBasketButton/AddInBasketButton';
+import { Product, ProductsInBasket } from '../../types/types';
 
 
-function ProductCard({ product, addProductToBasket }) {
+
+interface ProductCartProps {
+    product: Product
+    addProductToBasket: any
+}
+
+type CardImageStyleType = {
+    backgroundImage: string
+}
 
 
-    // console.log(product)
+const ProductCard: React.FC<ProductCartProps> = ({ product, addProductToBasket }) => {
 
     let { imgs, description, variations } = product;
-
     let [currentProduct, setCurrentProduct] = useState(0);
-
     let calc = Math.max(imgs?.length ? imgs?.length : 0, variations?.length ? variations?.length : 0);
-
     let [maxProductVariants, setmaxProductVariants] = useState(0);
 
     useMemo(() => {
@@ -24,11 +30,11 @@ function ProductCard({ product, addProductToBasket }) {
         // console.log('setmaxProductVariants')
     }, [calc])
 
+    
 
-
-    let dataForBasket = {
+    let dataForBasket: ProductsInBasket = {
         description: product.description,
-        product_id: product.id,
+        product_id: (product.id).toString(),
         imgs: imgs && imgs[currentProduct],
         name: product.name,
         variations: variations && variations[currentProduct],
@@ -36,10 +42,7 @@ function ProductCard({ product, addProductToBasket }) {
         id: variations && product?.id + '_' + variations[currentProduct]?.id
     }
 
-
-
-
-    let cardImageStyle = {
+    let cardImageStyle: CardImageStyleType = {
         backgroundImage:
             (imgs?.length > 0 && currentProduct < imgs?.length)
                 ? `url(https://test2.sionic.ru${imgs[currentProduct].image_url})`
@@ -47,7 +50,7 @@ function ProductCard({ product, addProductToBasket }) {
     }
 
 
-    let priceStr = variations && variations[currentProduct]?.price;
+    let priceStr: number = variations && variations[currentProduct]?.price;
 
     return (
         <>

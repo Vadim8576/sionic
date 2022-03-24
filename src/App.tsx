@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import './App.css';
 import MainPage from './components/pages/MainPage';
 import { Route, Routes } from 'react-router-dom';
@@ -6,28 +6,31 @@ import BasketPage from './components/pages/BasketPage';
 import Header from './components/header/Header';
 import { useEffect, useMemo, useState } from 'react';
 import OrderPage from './components/pages/OrderPage';
-import { fetchingCategories, fetchingProducts, setCurrentCategoryActionCreator, setCurrentRangeActionCreator } from './redux/reducer';
+import { fetchingCategories, fetchingProducts } from './redux/thunks';
+import {  setCurrentCategoryActionCreator, setCurrentRangeActionCreator } from './redux/actionCreators';
 import { addProductToBasketHelp, createProductList, loadBasketToStorage, saveBasketToStorage } from './helpFunctions/helpFunctions';
 import HistoryPage from './components/pages/HistoryPage';
+// import { compose, Dispatch } from 'redux';
+import { ProductsState, Query, ProductsInBasket } from './types/types';
 
 
 
+type Props = PropsFromRedux
 
+const App = (props: Props) => {
+  const { categories, products, images, variations, productTotal, currentCategory, currentRange, setCurrentCategoryAC, setCurrentRangeAC, fetchingCategories, fetchingProducts, isLoading } = props;
 
-const App = (props) => {
-
-  const { categories, products, images, variations, productTotal, currentCategory, currentRange, setCurrentCategoryActionCreator, setCurrentRangeActionCreator, fetchingCategories, fetchingProducts } = props;
-
-  let [productsInBasket, setProductsInBasket] = useState(loadBasketToStorage() || []);
+  const [productsInBasket, setProductsInBasket] = useState(loadBasketToStorage() || []);
   const [basketCount, setBasketCount] = useState(0);
   const [queryType, setQueryType] = useState('NEW');
 
   let productList = createProductList(products, images, variations);
 
 
+
   useEffect(() => {
     console.log('fetchingCategories')
-    fetchingCategories();
+    fetchingCategories('');
   }, [])
 
 
@@ -35,14 +38,14 @@ const App = (props) => {
   useEffect(() => {
     if(currentCategory && currentRange) {
       console.log('fetchingProducts');
-      let query = {currentCategory, currentRange, queryType}
+      let query: Query = {currentCategory, currentRange, queryType}
       fetchingProducts(query);
     }
   }, [currentCategory, currentRange])
 
 
 
-  const addProductToBasket = (dataForBasket) => {
+  const addProductToBasket = (dataForBasket: ProductsInBasket) => {
     setProductsInBasket(addProductToBasketHelp(productsInBasket, dataForBasket))
   }
 
@@ -69,10 +72,10 @@ const App = (props) => {
       <div style={{width: '100%'}}>
         <Header
           categories={categories}
-          setCurrentCategoryActionCreator={setCurrentCategoryActionCreator}
+          setCurrentCategoryAC={setCurrentCategoryAC}
           basketCount={basketCount}
           cleanBasket={cleanBasket}
-          setCurrentRangeActionCreator={setCurrentRangeActionCreator}
+          setCurrentRangeAC={setCurrentRangeAC}
           setQueryType={setQueryType}
         />
       </div>
@@ -84,8 +87,9 @@ const App = (props) => {
             products={productList}
             addProductToBasket={addProductToBasket}
             range={range}
-            setCurrentRangeActionCreator={setCurrentRangeActionCreator}
+            setCurrentRangeAC={setCurrentRangeAC}
             setQueryType={setQueryType}
+            isLoading={isLoading}
           />
         } />
         <Route path='/basket' element={
@@ -107,7 +111,7 @@ const App = (props) => {
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: ProductsState): ProductsState => {
   return {
     categories: state.categories,
     products: state.products,
@@ -115,17 +119,32 @@ const mapStateToProps = (state) => {
     variations: state.variations,
     productTotal: state.productTotal,
     currentCategory: state.currentCategory,
-    currentRange: state.currentRange
+    currentRange: state.currentRange,
+    isLoading: state.isLoading
   }
 }
 
 
 
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setCurrentCategoryAC: (currentCategory: number) => {
+      dispatch(setCurrentCategoryActionCreator(currentCategory))
+    },
+    setCurrentRangeAC: (currentRange: number) => {
+      dispatch(setCurrentRangeActionCreator(currentRange))
+    },
+    fetchingCategories: (params: string) => {
+      dispatch(fetchingCategories(params))
+    },
+    fetchingProducts: (params: Query) => {
+      dispatch(fetchingProducts(params))
+    }
+  }
+}
 
-export default connect(mapStateToProps,
-  {
-    fetchingCategories,
-    fetchingProducts,
-    setCurrentCategoryActionCreator,
-    setCurrentRangeActionCreator
-  })(App);
+const connector = connect(mapStateToProps, mapDispatchToProps)
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+
+export default connector(App);

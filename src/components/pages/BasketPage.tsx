@@ -1,8 +1,15 @@
 import React from "react";
+
 import BasketContainer from "../basket/BasketContainer";
 
 
-const BasketPage = ({productsInBasket, setProductsInBasket}) => {
+interface BasketPageProps {
+    productsInBasket: []
+    setProductsInBasket: any
+}
+
+
+const BasketPage: React.FC<BasketPageProps> = ({productsInBasket, setProductsInBasket}) => {
 
 
     return (

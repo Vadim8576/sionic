@@ -97,3 +97,16 @@
 .orderBtnDisabled .orderBtn {
 	opacity: 0.5;
 }
+
+
+@media screen and (max-width: 400px) {
+
+
+	.basketIconWrapper {
+		width: 0;
+	}	
+	
+	.basketTitle {
+		padding: 0 20px;
+	}
+}
